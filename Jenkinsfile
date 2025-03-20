@@ -8,7 +8,7 @@ pipeline {
             steps {
                 //cleanWs()
                 // Clone the Git repository
-                git credentialsId: 'git-credentials', url: 'https://github.com/zendesk/node-js-sample.git', branch: 'main' // Replace with your Git repository
+                git credentialsId: 'git-credentials', url: 'https://github.com/ashvin-16/node-js-sample.git', branch: 'master' // Replace with your Git repository
                 sh 'echo $?'
                 sh 'echo "successfully cloned"'
             }
@@ -18,7 +18,7 @@ pipeline {
                 script {
                     // Build the Docker image
                     sh 'docker --version'
-                    sh 'docker build -t ${DOCKER_IMAGE} .'
+                    sh 'docker build -t aachoudhary/node-js-sample:1.0 .'
                     sh 'docker images'
                 }
             }
@@ -30,7 +30,7 @@ pipeline {
                         // Log in to Docker Hub using username and password
                         sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
                         // Push the Docker image to Docker Hub
-                        sh "docker push sandip9292/node-js-sample:1.0"
+                        sh "docker push aachoudhary/node-js-sample:1.0"
                     }
                 }
             }
